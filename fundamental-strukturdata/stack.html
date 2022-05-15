@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stack</title>
+</head>
+
+<body>
+    <h1>Struktur Data Stack</h1>
+</body>
+<script>
+    // struktur data Stack / LIFO (Last In First Out) / Tumpukan
+
+    const createStack = () => {
+        const stack = [];
+
+        return {
+            // memindahkan ke dalam variabel stack
+            push: (item) => {
+                stack.push(item);
+            },
+            // menghapus data yang paling pertama / awal
+            pop: () => {
+                stack.pop()
+            },
+            // melihat data yang paling atas / terbaru
+            peek: () => {
+                return `${ stack[stack.length -1] 
+                        ? `${stack[stack.length -1] } (index ke - ${stack.length -1})` 
+                        : 'data kosong'} `;
+            },
+            // melihat panjang ukuran
+            size: () => {
+                return stack.length
+            },
+            lookArray: stack
+        }
+    }
+
+    const bookStack = createStack();
+    bookStack.push("Cantik Itu Luka - Eka Kurniawan");
+    bookStack.push("Bumi Manusia - Pramoedya Ananta Toer");
+    bookStack.push("Anak Semua Bangsa - Pramoedya Ananta Toer");
+    bookStack.push("Jejak Langkah - Pramoedya Ananta Toer");
+    bookStack.push("Dunia Shophie - Jostin Gaarder")
+
+    bookStack.pop();
+    bookStack.pop();
+    // bookStack.pop();
+    // bookStack.pop();
+    // bookStack.pop();
+
+    console.log(bookStack.peek());
+    console.log(bookStack.size());
+
+    console.log(bookStack.lookArray);
+</script>
+
+</html>
