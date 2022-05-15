@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Struktur Data Tree</title>
+</head>
+
+<body>
+    <h1>Struktur Data Tree</h1>
+</body>
+<script>
+    /* 
+        Seperti struktur data graph,
+        namun tanpa kemungkinan terjadinyan hubungan timbal balik.
+     */
+
+    function createNode(key) {
+        const children = [];
+
+        return {
+            key: key,
+            children: children,
+
+            addChild(childKey) {
+                const childNode = createNode(childKey);
+                children.push(childNode);
+
+                return childNode;
+            }
+        }
+    }
+
+
+    // struktur data Tree hanya memiliki root / akar hanya satu saja.
+    function createTree(rootKey) {
+        const root = createNode(rootKey);
+        return {
+            root: root,
+            print() {
+                let result = " ";
+
+                function traverse(node, visitFn, depth) {
+                    visitFn(node, depth);
+                    if (node.children.length) {
+                        node.children.forEach(function (child) {
+                            traverse(child, visitFn, depth + 1);
+                        })
+                    }
+                }
+
+                function addKeyToResult(node, depth) {
+                    result += result.length == 0 ? node.key : `\n ${" " .repeat(depth * 3)} ${node.key}`;
+                }
+                traverse(root, addKeyToResult, 4);
+
+                return result;
+            }
+        }
+    }
+
+    const dom = createTree('html');
+
+    const head = dom.root.addChild('head');
+    const body = dom.root.addChild('body');
+    const script = dom.root.addChild('script');
+
+    const title = head.addChild("title");
+    const nav = body.addChild("nav");
+    const ul = nav.addChild('ul');
+    const li1 = ul.addChild("li");
+    const li2 = ul.addChild("li");
+    const li3 = ul.addChild("li");
+    const section = body.addChild("section");
+    const div = section.addChild("div.hero");
+    const main = body.addChild("main");
+    const footer = body.addChild("footer");
+
+    console.log(dom);
+    console.log(dom.print());
+</script>
+
+</html>
