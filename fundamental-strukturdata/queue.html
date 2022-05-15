@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queue</title>
+</head>
+
+<body>
+    <h1>Struktur Data Queue</h1>
+</body>
+<script>
+    const createQueue = () => {
+        const queue = [];
+
+        return {
+            /* unshift() memasukan item kedalam array di posisi paling awal, kebalikan dari push() */
+            enqueue: (item) => {
+                queue.unshift(item);
+            },
+            /* jika pada proses enqueue menggunakan unshift, antrian lama berada di akhir array,
+            berarti hapus data menggunakan pop(), karena pop mengambil data yang di akhir array,
+            jika pada proses enqueue memasukan data ke array menggunakan push(),maka
+            gunakanlah shift() untuk menghapus array yang pertama kali masuk, maka proses ini dinamakan queue*/
+            dequeue: () => {
+                queue.pop();
+            },
+            peek: () => {
+                return queue[queue.length - 1]
+            },
+            size: () => {
+                return `Length Array Queue ${queue.length}`
+            },
+            lookArray: queue
+        }
+    }
+
+    // inisialisai
+    const work = createQueue();
+
+    // memasukan ke dalam antrian
+    work.enqueue('Create landing page');
+    work.enqueue('Create responsive');
+    work.enqueue('Create Sidebar Responsive');
+    work.enqueue('optimization SEO friendly');
+    work.enqueue('Fix Responsive');
+    work.enqueue('Consume API from Backend');
+
+    // proses queue
+    work.dequeue();
+    work.dequeue();
+
+    // melihat seluruh data array queue
+    console.log(work.lookArray);
+
+    // melihat antrian saat ini
+    console.log(work.peek());
+
+    // melihat panjang antrian
+    console.log(work.size());
+</script>
+
+</html>
